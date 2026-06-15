@@ -59,10 +59,3 @@
     };
 };
 
-trackball_listener {
-    compatible = "zmk,input-listener";
-    device = <&trackball>; // torabo-tsuki LPの標準トラックボールノード
-    // 【設定】動いた時に切り替えるレイヤ番号(例: 3) と タイムアウト時間(例: 1500ミリ秒)
-
-    input-processors = <&zip_temp_layer 1 1500>;
-};

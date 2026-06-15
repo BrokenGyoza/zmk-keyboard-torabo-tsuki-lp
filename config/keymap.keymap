@@ -1,7 +1,6 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
 
 / {
@@ -23,7 +22,7 @@
 &none  &none      &none    &none     &none      &none                                   &none      &none  &none  &none          &none            &none
 &none  &kp Q      &kp L    &kp U     &kp COMMA  &kp DOT                                 &kp F      &kp W  &kp R  &kp Y          &kp P            &none
 &none  &kp E      &kp I    &kp A     &kp O      &kp G      &none      &none             &kp K      &kp T  &kp N  &kp S          &kp H            &none
-&none  &kp Z      &kp X    &kp C     &kp V      &kp B      &kp SPACE  &kp INT_MUHENKAN  &kp G      &kp D  &kp M  &kp J          &kp B            &none
+&none  &kp Z      &kp X    &kp C     &kp V      &kp B      &kp MINUS  &kp INT_MUHENKAN  &kp G      &kp D  &kp M  &kp J          &kp B            &none
 &none  &kp LCTRL  &kp TAB  &kp LALT  &kp BSPC   &kp SPACE  &mo 2      &mo 3             &kp ENTER  &none  &none  &kp RIGHT_ALT  &kp RIGHT_SHIFT  &none
             >;
         };
@@ -50,11 +49,11 @@
 
         layer_3 {
             bindings = <
-&trans  &trans   &trans   &trans        &trans        &trans                      &trans            &trans     &trans         &trans     &trans      &trans
-&trans  &kp F1   &kp F2   &kp F3        &kp F4        &kp F5                      &kp HOME          &kp PG_UP  &kp PAGE_DOWN  &kp END    &kp ESCAPE  &trans
-&trans  &kp F6   &kp F7   &kp F8        &kp F9        &kp F10     &trans  &trans  &kp LEFT          &kp DOWN   &kp UP_ARROW   &kp RIGHT  &kp TAB     &trans
-&trans  &kp F11  &kp F12  &out OUT_USB  &out OUT_BLE  &bt BT_NXT  &trans  &trans  &kp SINGLE_QUOTE  &kp DQT    &kp GRAVE      &kp TILDE  &kp PIPE    &trans
-&trans  &trans   &trans   &trans        &trans        &trans      &trans  &trans  &trans            &trans     &trans         &trans     &trans      &trans
+&trans  &trans  &trans  &trans  &trans  &trans                  &trans                &trans                &trans                 &trans        &trans      &trans
+&trans  &none   &none   &none   &none   &none                   &kp EXCLAMATION       &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp ASTERISK  &kp ESCAPE  &trans
+&trans  &none   &none   &none   &none   &none   &trans  &trans  &kp SLASH             &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp EQUAL     &kp GRAVE   &trans
+&trans  &none   &none   &none   &none   &none   &trans  &trans  &kp NON_US_BACKSLASH  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp AT_SIGN   &kp HASH    &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans                &trans                &trans                 &trans        &trans      &trans
             >;
         };
     };

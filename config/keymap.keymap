@@ -32,7 +32,7 @@
 &trans  &trans  &trans  &trans     &trans     &trans                  &trans  &trans     &trans          &trans    &trans  &trans
 &trans  &trans  &trans  &trans     &trans     &trans                  &trans  &trans     &msc SCRL_UP    &trans    &trans  &trans
 &trans  &trans  &trans  &mkp RCLK  &mkp LCLK  &trans  &trans  &trans  &trans  &mkp LCLK  &mkp MB3        &mkp MB2  &trans  &trans
-&trans  &trans  &trans  &trans     &trans     &trans  &trans  &trans  &trans  &trans     &msc SCRL_DOWN  &trans    &trans  &trans
+&trans  &trans  &trans  &trans     &trans     &trans  &to 0   &to 0   &trans  &trans     &msc SCRL_DOWN  &trans    &trans  &trans
 &trans  &trans  &trans  &trans     &trans     &trans  &trans  &trans  &trans  &trans     &trans          &trans    &trans  &trans
             >;
         };
@@ -43,7 +43,7 @@
 &trans  &none   &none           &kp UP_ARROW    &none            &none                   &none      &kp N7        &kp N8        &kp N9        &none         &trans
 &trans  &none   &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &none   &trans  &trans  &kp MINUS  &kp NUMBER_4  &kp N5        &kp NUMBER_6  &none         &trans
 &trans  &none   &none           &none           &none            &none   &trans  &trans  &kp SLASH  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_0  &trans
-&trans  &trans  &trans          &trans          &trans           &trans  &trans  &trans  &trans     &trans        &trans        &trans        &trans        &trans
+&trans  &trans  &trans          &trans          &trans           &trans  &trans  &to 1   &trans     &trans        &trans        &trans        &trans        &trans
             >;
         };
 
@@ -53,9 +53,8 @@
 &trans  &none   &none   &none   &none   &none                   &kp EXCLAMATION       &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp ASTERISK  &kp ESCAPE  &trans
 &trans  &none   &none   &none   &none   &none   &trans  &trans  &kp SLASH             &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp EQUAL     &kp GRAVE   &trans
 &trans  &none   &none   &none   &none   &none   &trans  &trans  &kp NON_US_BACKSLASH  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp AT_SIGN   &kp HASH    &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans                &trans                &trans                 &trans        &trans      &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &to 1   &trans  &trans                &trans                &trans                 &trans        &trans      &trans
             >;
         };
     };
 };
-

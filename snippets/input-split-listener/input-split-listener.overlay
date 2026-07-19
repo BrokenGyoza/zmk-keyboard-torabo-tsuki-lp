@@ -1,3 +1,6 @@
+#include <input/processors.dtsi>
+#include <dt-bindings/zmk/input_transform.h>
+
 /{
     split_inputs {
         #address-cells = <1>;
@@ -13,6 +16,10 @@
         compatible = "zmk,input-listener";
         device = <&pointing_device_split>;
         status = "okay";
-        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>;
+        /* Peripheral trackball (double-ball): same AML as pointing_listener */
+        input-processors = <
+            &zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)
+            &zip_temp_layer 1 1000
+        >;
      };
 };

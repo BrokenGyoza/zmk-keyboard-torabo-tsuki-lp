@@ -3,6 +3,33 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
+#include <dt-bindings/zmk/input_transform.h>
+#include <input/processors.dtsi>
+
+/*
+ * Auto mouse layer (AML):
+ * Moving the trackball temporarily enables layer 1 (mouse buttons).
+ * After AUTO_MOUSE_TIMEOUT_MS of no pointer events, layer 1 is disabled.
+ *
+ * Tuning:
+ * - require-prior-idle-ms: ignore ball motion this soon after a keypress
+ *   (reduces accidental AML while typing). Raise if mis-triggers, lower if
+ *   AML feels hard to enter.
+ * - timeout (last arg to zip_temp_layer): how long AML stays after motion stops.
+ * - excluded-positions: mouse-button keys that must not cancel AML.
+ */
+&zip_temp_layer {
+    require-prior-idle-ms = <350>;
+    /* D/F, center LCLK/RCLK, J/K on the home row of this keymap */
+    excluded-positions = <27 28 30 31 33 34>;
+};
+
+&pointing_listener {
+    input-processors = <
+        &zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)
+        &zip_temp_layer 1 1000
+    >;
+};
 
 / {
     combos {
@@ -28,6 +55,7 @@
             >;
         };
 
+        /* Auto mouse layer: enabled by trackball motion via zip_temp_layer */
         layer_1 {
             bindings = <
 &trans  &trans  &trans  &trans     &trans     &trans                  &trans  &trans     &trans     &trans  &trans  &trans

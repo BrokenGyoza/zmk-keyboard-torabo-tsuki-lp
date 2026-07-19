@@ -6,8 +6,8 @@
 
 ## オートマウスレイヤー
 
-`feature/auto-mouse-layer` ブランチでは、トラックボールを動かすと layer 1（マウスボタン）が自動で有効になり、約1秒無操作で解除されます。
+`feature/auto-mouse-layer` ブランチでは、BrokenGyoza の `master` キーマップをベースに、トラックボール移動で layer 1（マウスパッド層）が自動有効になり、約1秒無操作で解除されます。
 
 * 打鍵直後の誤発動抑制: `require-prior-idle-ms = 350`（`config/keymap.keymap`）
-* 元の設定に戻す: `git checkout master`
-* 調整を続ける: `git checkout feature/auto-mouse-layer`
+* 元のキーマップのみに戻す: GitHub の `master` ブランチ
+* AML 付きで使う: `feature/auto-mouse-layer`

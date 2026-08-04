@@ -10,6 +10,10 @@
  * Moving the trackball temporarily enables layer 1 (mouse pad).
  * After 1000ms of no pointer events, layer 1 is disabled.
  *
+ * Hold-to-scroll:
+ * Position 47 on layer 1 (directly below &mkp LCLK) holds layer 4, where ball
+ * movement is mapped to scrolling instead of cursor movement.
+ *
  * Keymap body is from BrokenGyoza master (custom layout + mouse/num/symbol layers).
  *
  * Tuning:
@@ -19,8 +23,8 @@
  */
 &zip_temp_layer {
     require-prior-idle-ms = <350>;
-    /* layer 1: MOVE_UP, SCRL_UP, MOVE_*, LCLK/MB3/MB2, SCRL_DOWN */
-    excluded-positions = <15 20 26 27 28 33 34 35 48>;
+    /* layer 1: MOVE_UP, SCRL_UP, MOVE_*, LCLK/MB3/MB2, scroll hold, SCRL_DOWN */
+    excluded-positions = <15 20 26 27 28 33 34 35 47 48>;
 };
 
 &pointing_listener {
@@ -28,6 +32,21 @@
         &zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)
         &zip_temp_layer 1 1000
     >;
+
+    /*
+     * Overrides run before the base processors, and the mapper rewrites REL_X/Y
+     * into wheel codes that the base transform no longer matches, so the axis
+     * inversion has to be repeated here. Flip either INVERT if a scroll axis
+     * runs backwards. process-next keeps zip_temp_layer alive while scrolling.
+     */
+    scroller {
+        layers = <4>;
+        input-processors = <
+            &zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)
+            &zip_xy_to_scroll_mapper
+        >;
+        process-next;
+    };
 };
 
 / {
@@ -60,7 +79,7 @@
 &trans  &trans        &trans          &trans          &trans           &trans                  &trans  &trans     &trans          &trans    &trans        &trans
 &trans  &bt BT_SEL 0  &none           &mmv MOVE_UP    &none            &none                   &none   &none      &msc SCRL_UP    &none     &bt BT_SEL 1  &trans
 &trans  &none         &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &none   &trans  &trans  &none   &mkp LCLK  &mkp MB3        &mkp MB2  &none         &trans
-&trans  &none         &none           &none           &none            &none   &to 0   &to 0   &none   &none      &msc SCRL_DOWN  &none     &none         &trans
+&trans  &none         &none           &none           &none            &none   &to 0   &to 0   &none   &mo 4      &msc SCRL_DOWN  &none     &none         &trans
 &trans  &trans        &trans          &trans          &trans           &trans  &trans  &trans  &trans  &trans     &trans          &trans    &trans        &trans
             >;
         };
@@ -85,6 +104,7 @@
             >;
         };
 
+        /* Scroll layer: held from layer 1; keys pass through while the ball scrolls */
         layer_4 {
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &trans

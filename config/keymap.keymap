@@ -34,17 +34,13 @@
     >;
 
     /*
-     * Overrides run before the base processors, and the mapper rewrites REL_X/Y
-     * into wheel codes that the base transform no longer matches, so the axis
-     * inversion has to be repeated here. Flip either INVERT if a scroll axis
-     * runs backwards. process-next keeps zip_temp_layer alive while scrolling.
+     * Overrides run before the base processors. No XY invert here so hold-scroll
+     * direction is the reverse of the previous (X|Y inverted) setup.
+     * process-next keeps zip_temp_layer alive while scrolling.
      */
     scroller {
         layers = <4>;
-        input-processors = <
-            &zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)
-            &zip_xy_to_scroll_mapper
-        >;
+        input-processors = <&zip_xy_to_scroll_mapper>;
         process-next;
     };
 };

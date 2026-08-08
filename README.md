@@ -17,5 +17,5 @@
 `feature/hold-to-scroll` ブランチでは、上記の AML に加えて、layer 1 の左クリックの一つ下のキー（position 47）を押している間だけ layer 4 に入り、ボールの移動がスクロールになります。
 
 * 離せばすぐカーソル移動に戻ります
-* スクロールの向きが逆なら `config/keymap.keymap` の `scroller` 内の `INPUT_TRANSFORM_X_INVERT` / `INPUT_TRANSFORM_Y_INVERT` を調整してください
+* スクロールの向きがまだ合わなければ `config/keymap.keymap` の `scroller` に `zip_xy_transform` の INVERT を足して調整してください
 * AML のみで使う: `feature/auto-mouse-layer`
